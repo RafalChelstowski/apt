@@ -1,8 +1,11 @@
 import { Canvas } from '@react-three/fiber';
-import { OrbitControls, useContextBridge } from '@react-three/drei';
-import { GeoBox } from '~/components/GeoBox';
+import { useContextBridge } from '@react-three/drei';
+import { Physics } from '@react-three/cannon';
 import { accelerometerSensor } from '~/api/accelerometerSensor';
-import { AccBox } from '~/components/AccBox';
+import { Apt } from '~/components/Apt';
+import { StaticBounds } from '~/components/Bounds';
+import { Player } from '~/components/Player';
+import { UI } from '~/components/UI';
 
 export function Home() {
   if (!window.ReactQueryClientContext) {
@@ -17,13 +20,15 @@ export function Home() {
     <div className='w-screen h-screen'>
       <Canvas>
         <ContextBridge>
+          <Physics gravity={[0, -2, 0]}>
+            <Player />
+            <Apt />
+            <StaticBounds />
+          </Physics>
           <ambientLight />
-          <pointLight position={[2, 2, 2]} />
-          <GeoBox />
-          <AccBox />
-          <OrbitControls />
         </ContextBridge>
       </Canvas>
+      <UI />
     </div>
   );
 }
