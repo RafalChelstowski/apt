@@ -1,11 +1,15 @@
 import { Canvas } from '@react-three/fiber';
 import { OrbitControls, useContextBridge } from '@react-three/drei';
-import { Box } from '~/components/Box';
+import { GeoBox } from '~/components/GeoBox';
+import { accelerometerSensor } from '~/api/accelerometerSensor';
+import { AccBox } from '~/components/AccBox';
 
 export function Home() {
   if (!window.ReactQueryClientContext) {
     throw new Error('no react query context');
   }
+
+  accelerometerSensor();
 
   const ContextBridge = useContextBridge(window.ReactQueryClientContext);
 
@@ -15,7 +19,8 @@ export function Home() {
         <ContextBridge>
           <ambientLight />
           <pointLight position={[2, 2, 2]} />
-          <Box />
+          <GeoBox />
+          <AccBox />
           <OrbitControls />
         </ContextBridge>
       </Canvas>
