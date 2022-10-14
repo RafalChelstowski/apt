@@ -1,7 +1,6 @@
 import { Canvas } from '@react-three/fiber';
 import { useContextBridge } from '@react-three/drei';
 import { Physics } from '@react-three/cannon';
-import { accelerometerSensor } from '~/api/accelerometerSensor';
 import { Apt } from '~/components/Apt';
 import { StaticBounds } from '~/components/Bounds';
 import { Player } from '~/components/Player';
@@ -11,8 +10,6 @@ export function Home() {
   if (!window.ReactQueryClientContext) {
     throw new Error('no react query context');
   }
-
-  accelerometerSensor();
 
   const ContextBridge = useContextBridge(window.ReactQueryClientContext);
 
