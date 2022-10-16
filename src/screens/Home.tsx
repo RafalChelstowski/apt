@@ -5,6 +5,7 @@ import { Apt } from '~/components/Apt';
 import { StaticBounds } from '~/components/Bounds';
 import { Player } from '~/components/Player';
 import { UI } from '~/components/UI';
+import { Crosshair } from '~/components/Crosshair';
 
 export function Home() {
   if (!window.ReactQueryClientContext) {
@@ -25,6 +26,7 @@ export function Home() {
           <ambientLight />
         </ContextBridge>
       </Canvas>
+      <Crosshair />
       <UI />
     </div>
   );
